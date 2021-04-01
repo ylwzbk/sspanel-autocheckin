@@ -166,7 +166,7 @@ send_message() {
     if [ "${QMSG_KEY}" ]; then
         result_qmsg_log_text="${TITLE}${log_text}"
         echo -e "msg=${result_qmsg_log_text}" >${PUSH_TMP_PATH}
-        push=$(curl -k -s --data-binary @${PUSH_TMP_PATH} "https://qmsg.zendee.cn/send/${QMSG_KEY}")
+        push=$(curl -k -s --data-binary @${PUSH_TMP_PATH} "https://qmsg.zendee.cn/group/${QMSG_KEY}")
         push_code=$(echo ${push} | jq -r ".success" 2>&1)
         if [ "${push_code}" == "true" ]; then
             echo -e "【Qmsg 酱推送结果】: 成功\n"
